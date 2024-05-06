@@ -2,7 +2,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-void	handle_signal(int signal)
+void	signal_decoder(int signal)
 {
 	static unsigned char	c;
 	static int				biti;
@@ -26,8 +26,8 @@ int	main(void)
 	write(1, "PID ->\t", 7);
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n[LISTENING]\n", 13);
-	signal(SIGUSR1, handle_signal);
-	signal(SIGUSR2, handle_signal);
+	signal(SIGUSR1, signal_decoder);
+	signal(SIGUSR2, signal_decoder);
 	while (1)
 		pause();
 	return (0);

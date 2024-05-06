@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void	send_signal(int pid, unsigned char character)
+void	signal_throw(int pid, unsigned char character)
 {
 	int				i;
 	unsigned char	tmp;
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 	server_pid = ft_atoi(argv[1]);
 	i = 0;
 	while (argv[2][i])
-		send_signal(server_pid, argv[2][i++]);
-	send_signal(server_pid, 0);
+		signal_throw(server_pid, argv[2][i++]);
+	signal_throw(server_pid, 0);
 	return (0);
 }
