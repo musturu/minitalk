@@ -28,6 +28,14 @@ void	signal_throw(int pid, unsigned char character)
 	}
 }
 
+void	read_signal(int signal)
+{
+	if (signal == SIGUSR1)
+		write(1, "delivered bit;\t1\n", 17);
+	else if (signal == SIGUSR2)
+		write(1, "delivered bit;\t0\n", 17);
+}
+
 int	main(int argc, char *argv[])
 {
 	pid_t		server_pid;
@@ -35,6 +43,8 @@ int	main(int argc, char *argv[])
 
 	if (argc != 3)
 		exit(0);
+	signal(SIGUSR2, read_signal);
+	signal(SIGUSR1, read_signal);
 	server_pid = ft_atoi(argv[1]);
 	i = 0;
 	while (argv[2][i])
